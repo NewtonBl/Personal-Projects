@@ -30,8 +30,13 @@ write_excel_csv(top_fifty, "top50.csv")
 top_25 <- filtered_word_count |> head(25) |> arrange(count) |>  mutate(word=factor(word, levels=word))
 
 ggplot(top_25, aes(word, count, fill = count)) +
-     geom_col() +
-     coord_flip() +
-     xlab("Word") +
-     ylab("Number of Occurrences") +
-     labs(title = "Top 25 Words", caption = "25 most frequently used words in job descriptions that I applied to. \nWords were filtered to exclude common and irrelevant words. \n Provides personal insight to positions I am inherently drawn to.")
+  geom_col() +
+  coord_flip() +
+  xlab("Word") +
+  ylab("Number of Occurrences") +
+  labs(title = "Top 25 Words", caption = "25 most frequently used words in job descriptions that I applied to. \nWords were filtered to exclude common and irrelevant words. \n Provides personal insight to positions I am inherently drawn to.") +
+  theme(panel.grid.major.x = element_line(color = "black", size = 0.25), 
+        panel.grid.minor.x = element_line(color = "black", linetype = "dotted"))
+
+#Save Graphic
+ggsave("Top_25_Graphic.pdf")
